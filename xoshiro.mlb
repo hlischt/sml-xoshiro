@@ -1,3 +1,14 @@
-$(SML_LIB)/basis/basis.mlb
-prng.sig
-xoshiro256.sml
+local
+	$(SML_LIB)/basis/basis.mlb
+	prng.sig
+	xoshiro.sig
+	xoshiro256ss.sml
+	xoshiro256pp.sml
+	xoshiro256p.sml
+	xoshiro.sml
+in
+	signature PRNG
+	structure Xoshiro256ss
+	structure Xoshiro256pp
+	structure Xoshiro256p
+end

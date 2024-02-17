@@ -1,7 +1,14 @@
 Library
 signature PRNG
-structure Xoshiro256
+structure Xoshiro256ss
+structure Xoshiro256pp
+structure Xoshiro256p
 is
-xoshiro256.sml
 prng.sig
+xoshiro.sig
+xoshiro256ss.sml
+xoshiro256pp.sml
+xoshiro256p.sml
+xoshiro.sml
+
 $/basis.cm
