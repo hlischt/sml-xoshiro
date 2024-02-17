@@ -1,0 +1,7 @@
+Library
+signature PRNG
+structure Xoshiro256
+is
+xoshiro256.sml
+prng.sig
+$/basis.cm
