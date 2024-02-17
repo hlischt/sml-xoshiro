@@ -1,0 +1,17 @@
+* sml-xoshiro
+This module implements the [[https://prng.di.unimi.it/][xoshiro256**]] 64-bit pseudorandom number generator in Standard ML. The name of the structure (=Xoshiro256=) may be misleading, as the algorithm itself has variants like [[https://prng.di.unimi.it/xoshiro256plusplus.c][xoshiro256++]] and [[https://prng.di.unimi.it/xoshiro256plus.c][xoshiro256+]], but Standard ML doesn't allow for the characters =+= or =*= to appear in identifier names.
+
+This module was tested with Standard ML of New Jersey (v110.79) and MLton (20210117). Other implementation may work as long as they support the [[https://smlfamily.github.io/Basis/word.html][Word64 structure]].
+
+** Design
+#+BEGIN_CODE sml
+type intU = Word64.word
+type seed
+val maxUInt: intU
+val generateSeed: unit -> seed
+val seedFromNumber: intU -> seed
+val randomNumber: seed -> intU * seed
+val randomToN: intU * seed -> intU * seed
+#+END_CODE
+
+Being a functional language, Standard ML heavily discourages the use of a global state, so this library revolves around passing a state value, i.e. the seed. First, you have to iniitialize the state, either by passing an arbitrary number to =seedFromNumber= or by automatically getting one with the =generateSeed= function, which uses the current time in nanoseconds as seed. Once you have a state value, you pass it to =randomNumber= to get a random number and a new seed, which you can use to call the function again. =randomToN= works similarly, but you have to pass a number n alongside the state, and the random number it returns is on the range [0, n-1].
