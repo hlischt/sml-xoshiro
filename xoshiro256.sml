@@ -1,13 +1,4 @@
-structure Xoshiro256 :>
-	  sig
-	      type intU = Word64.word (* uInt look too similar to "unit" *)
-	      type seed
-	      val maxUInt: intU
-	      val generateSeed: unit -> seed
-	      val seedFromNumber: intU -> seed
-	      val randomNumber: seed -> intU * seed
-	      val randomToN: intU * seed -> intU * seed
-	  end =
+structure Xoshiro256 :> PRNG =
 struct
 type intU = Word64.word
 type seed = intU * intU * intU * intU
