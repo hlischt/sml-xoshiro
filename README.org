@@ -1,9 +1,15 @@
 * sml-xoshiro
-This module implements the [[https://prng.di.unimi.it/][xoshiro256**]] 64-bit pseudorandom number generator in Standard ML. The name of the structure (=Xoshiro256=) may be misleading, as the algorithm itself has variants like [[https://prng.di.unimi.it/xoshiro256plusplus.c][xoshiro256++]] and [[https://prng.di.unimi.it/xoshiro256plus.c][xoshiro256+]], but Standard ML doesn't allow for the characters =+= or =*= to appear in identifier names.
+This module implements the [[https://prng.di.unimi.it/][xoshiro256]] family of 64-bit pseudorandom number generators in Standard ML. The following structures are available:
+
+- =Xoshiro256ss=, implementing [[https://prng.di.unimi.it/xoshiro256starstar.c][xoshiro256**]]
+- =Xoshiro256pp=, implementing [[https://prng.di.unimi.it/xoshiro256plusplus.c][xoshiro256++]]
+- =Xoshiro256p=, implementing [[https://prng.di.unimi.it/xoshiro256plus.c][xoshiro256+]]
 
 This module was tested with Standard ML of New Jersey (v110.79) and MLton (20210117). Other implementation may work as long as they support the [[https://smlfamily.github.io/Basis/word.html][Word64 structure]].
 
 ** Design
+The PRNGs follow this signature:
+
 #+BEGIN_SRC sml
 type intU = Word64.word
 type seed
